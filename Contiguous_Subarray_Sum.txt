@@ -23,7 +23,8 @@ class Solution:
         
         #############################################################################3
         //C++ code for Contiguous Subsum Array
-        //Logic is Find Cumulative Sum and store it in unordered Map...(Basically we need to store duplicate Keys)...
+        //Logic is Find Cumulative Sum and store it in unordered Map...(Basically we need to store duplicate Keys)..
+        //And store the mod of cumulative sum to the given targetSum and return True if same mod occured twice in gap to more than one index value.
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
