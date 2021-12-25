@@ -1,0 +1,21 @@
+#Python Code Using dictionary to map the list with index as key and list item as value than sorting and storing at their indices
+class Solution:
+    def maxSubsequence(self, nums: List[int], k: int) -> List[int]:
+        mydict = {}
+        for i in range(len(nums)):
+            mydict[i] = nums[i]
+        mydict = dict(sorted(mydict.items(), key=lambda item: item[1]))
+        
+        mylis = ['x']*len(nums)
+        for x,v in reversed(mydict.items()): 
+            mylis[x] = v
+            k = k - 1
+            if(k == 0):
+                break
+    
+        flis = []
+        for x in mylis:
+            if(x != 'x'):
+                flis.append(x)
+          
+        return flis
