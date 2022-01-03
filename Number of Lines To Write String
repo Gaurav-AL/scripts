@@ -1,0 +1,16 @@
+class Solution:
+    def numberOfLines(self, widths: List[int], s: str) -> List[int]:
+        lines = 1
+        last_line = 0
+        total = 0
+        prev_total = 0
+        for x in s:
+            if(total + widths[ord(x)-97] > (lines)*100):
+                prev_total = total
+                print(prev_total)
+                lines += 1
+            total += widths[ord(x) - 97]
+        last_line = total - prev_total
+        print(last_line,lines,total)
+            
+        return [lines,last_line]
