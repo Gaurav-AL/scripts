@@ -1,0 +1,26 @@
+class Solution:
+    import sys
+    def minSubarray(self, nums: List[int], p: int) -> int:
+        delsum = sum(nums) % p
+        if(delsum == 0): return 0
+        lookup = defaultdict(int)
+        lookup[0] = 1
+        tsum = 0
+        for x in range(len(nums)):
+            tsum += nums[x]
+            rem = tsum % delsum
+            lookup[x] = rem
+        sorted_loookup = {}
+        value = 0    
+        sorted_lookup = sorted(lookup.items(),key = lambda x : x[1])
+        # print(sorted_lookup[1][1])
+        Min = len(nums) + 1
+        for x in range(1,len(sorted_lookup)):
+            if(sorted_lookup[x-1][1] == sorted_lookup[x][1]):
+                value = sorted_lookup[x][0] - sorted_lookup[x-1][0]
+                if(value < Min):
+                    Min = value
+                    
+        # print(sorted_lookup)
+        return Min if(Min < len(nums)-1) else -1
+                
