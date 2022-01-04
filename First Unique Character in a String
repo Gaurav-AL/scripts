@@ -1,0 +1,14 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        lookup = defaultdict(int)
+        for x in s:
+            lookup[x] += 1
+        char = ''
+        for k,v in lookup.items():
+            if(v == 1):
+                char = k
+                break
+      
+        index = s.find(char) if char != '' else -1
+        return index
+        
