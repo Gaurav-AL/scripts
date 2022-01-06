@@ -1,0 +1,21 @@
+class Solution:
+    from collections import Counter
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        out,count = [],0
+        
+        for x in words1:
+            str1 = len(x)
+            check1 = Counter(x)
+            for y in words2:
+                str2 = len(y)
+                check2 = Counter(y)
+                ln = check1 - check2
+                sums = sum(ln.values())
+                if(sums == (str1 - str2)):
+                    count += 1
+                if(count == len(words2)):
+                    count = 0
+                    out.append(x)           
+            count = 0             
+        return out
+        
