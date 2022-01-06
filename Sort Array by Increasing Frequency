@@ -1,0 +1,5 @@
+class Solution(object):
+	def frequencySort(self, nums):
+
+		nums.sort(reverse=True)
+		return sorted(nums,key=nums.count,reverse=False)
