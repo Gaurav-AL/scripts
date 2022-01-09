@@ -1,0 +1,46 @@
+1:
+Big Integer Class : Since java doesn't have very long range for Integer
+So for very long number where even Long long type fails to store the number
+Big Integer Class Is very helpful for java coders.Though there is an alternate
+Solution for storing it in Arrays.
+
+2:Euclidean Algorithm, Extended Euclidena Algorithm for finding LCM and GCD:
+    int gcd(int a ,in b):
+        if(b == 0):
+            return a
+        else:
+            return gcd(b,a%b)
+ Very Helpful for very long Integers.
+
+
+3: Sieve of Eratostheses & Segmented Sieve : For finding Prime Numbers:
+    Aprroach for Sieve of Eratostheses is simple find all the prime number 
+    store it in an array.
+
+    bool[] prime  =  new bool[size];
+    prime[0] = false;
+    prime[1] = false;
+    for(int i = 2; i<= size;i++)
+        prime[i] = true
+    for(int i = 2, i <= size;i++){
+        if(i == true){
+        while(i*i <= size){
+            prime[i*i] = false;
+            i = i + 1;
+            }
+        }
+    }
+    Segmented Sieve is used when Number is very large, we segment the number 
+    into sqrt(size) range and the apply simple Sieve in those segments.
+
+4: Modulo Athimetics : All the properties regarding modulus helps a lot for 
+   very large numbers.
+
+5: Lucas Thorem : Used for finding permutation and combination in modulo of permutation
+    very fast.
+
+6: Chinese remainder theorem.
+7: Series adn sequences:
+8:Catalan Theorem. (very Helful).
+9:PigeonHole Principle
+10.Inclusion and Exclusion Principle.
