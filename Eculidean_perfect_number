@@ -7,4 +7,4 @@ class Solution:
   
   Since required number is upto 10^8 only so this code is valid for these prime numbers:
       2**(p-1) * (2**p - 1) , where P is prime number.
-                  Euclidean Theorem. Shortcut way to calculate prime number.
+                  Euclidean Theorem. Shortcut way to calculate prime number
