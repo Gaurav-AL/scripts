@@ -1,0 +1,11 @@
+class Solution:
+    def checkPerfectNumber(self, nums: int) -> bool:
+        total = 0
+        if(nums < 6):
+            return False
+        if(nums//2 + nums/2 == nums):
+            total += nums//2 + 1
+        for i in range(2,nums//2):
+            if(((nums)% i) == 0):
+                total += i
+        return total == nums
