@@ -1,0 +1,20 @@
+class Solution:
+    def numTriplets(self, nums1: List[int], nums2: List[int]) -> int:
+        triples = []
+        total = 0
+        lookup = defaultdict(int)
+        for i in range(len(nums2)):
+            lookup[nums2[i]] += 1
+        for i in range(len(nums1)):
+            tsum = nums1[i] ** 2
+            for j in range(len(nums2)):
+                req = tsum/nums2[j]
+                if(lookup[req]):
+                    total += lookup[req]
+                    lookup[nums2[j]] -= 1
+                    lookup[req] -= 1
+        print(lookup,total)
+            
+           
+             
+        return total
