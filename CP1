@@ -1,0 +1,13 @@
+class Solution:
+    def checkValid(self, matrix: List[List[int]]) -> bool:
+        n = len(matrix)
+        lookup = defaultdict(int)
+        for i in range(n):
+            for j in range(n):
+                lookup[matrix[i][j]] += 1
+        print(lookup)
+        for k,v in lookup.items():
+            if(v != n):
+                return False
+        
+        return True
