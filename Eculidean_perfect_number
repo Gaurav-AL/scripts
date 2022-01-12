@@ -1,0 +1,10 @@
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        """Euclid-Euler theorem"""
+        for p in 2,3,5,7,13:
+            if 2**(p-1) * (2**p - 1) == num: return True
+        return False 
+  
+  Since required number is upto 10^8 only so this code is valid for these prime numbers:
+      2**(p-1) * (2**p - 1) , where P is prime number.
+                  Euclidean Theorem. Shortcut way to calculate prime number
