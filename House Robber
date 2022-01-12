@@ -1,0 +1,15 @@
+Alternate House DP Solution by me
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if(len(nums) < 3):
+            return max(nums)
+        if(len(nums) == 3):
+            return max(nums[0]+nums[2],nums[1])
+        rob = [0]*len(nums)
+        rob[0] = nums[0]
+        rob[1] = nums[1]
+        rob[2] = nums[0] + nums[2]
+        for x in range(3,len(nums)):
+            rob[x] = max(max(rob[x-3],rob[x-2]) + nums[x],rob[x-1])
+        print(rob)
+        return rob[-1]
