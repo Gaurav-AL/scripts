@@ -10,6 +10,5 @@ for x in reversed(range(len(nums))):
     
 print(max_left,max_right)
 for x in range(1,len(nums)-1):
-    trapped_water += min(max_left[x-1],max_right[x+1]) - nums[x]
-    
+    trapped_water += min(max_left[x-1],max_right[x+1]) - nums[x]) 
 print(trapped_water)
