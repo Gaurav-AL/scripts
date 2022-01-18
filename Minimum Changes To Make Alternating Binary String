@@ -1,0 +1,18 @@
+class Solution:
+    def minOperations(self, s: str) -> int:
+        count = 0
+        if(len(s) <= 1):return 0
+        l = len(s)
+        if(l % 2 == 0):
+            start0 = "01"*(l//2)
+            start1 = "10"*(l//2)
+        if(l % 2 != 0):
+            start0 = "01"*(l//2) + "0"
+            start1 = "10"*(l//2) + "1"
+        m1,m2 = 0,0
+        for i in range(len(s)):
+            if(s[i] != start0[i]):
+                m1 += 1
+            if(s[i] != start1[i]):
+                m2 += 1
+        return min(m1,m2)
