@@ -1,0 +1,9 @@
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        lookup = defaultdict(int)
+        for i in range(len(paths)):
+            lookup[paths[i][0]] += 2
+            lookup[paths[i][1]] += 1
+        lookup = sorted(lookup.items(),key = lambda x:x[1])
+        
+        return lookup[0][0]
