@@ -1,0 +1,21 @@
+class Solution:
+    from collections import Counter
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        
+        lookup = Counter(nums)
+        set_nums = list(set(nums))
+        profits = [0]*len(set_nums)
+        profits[0] = lookup[set_nums[0]]*set_nums[0]
+        if(len(set_nums) == 1): return profits[0]
+        if(set_nums[1] - set_nums[0] == 1):
+            profits[1] = max(profits[0], lookup[set_nums[1]]*set_nums[1])
+        else:
+            profits[1] = profits[0] + lookup[set_nums[1]]*set_nums[1]
+        if(len(set_nums) == 2): return profits[-1]
+        for i in range(2, len(set_nums)):
+            if(set_nums[i] - set_nums[i-1] != 1):
+                profits[i] = lookup[set_nums[i]]*set_nums[i] + profits[i-1] 
+            else:
+                profits[i] =  max(lookup[set_nums[i]]*set_nums[i]+profits[i-2],profits[i-1])
+        # print(profits)
+        return max(profits)
