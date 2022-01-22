@@ -1,0 +1,33 @@
+class Solution:
+    def getMaxLen(self, nums: List[int]) -> int:
+        #scan the nums
+        #use sliding window to only include subarrays without zeros
+        #if the count of negative numbers are even, max length for this slidng window session is the slindg window itself
+        #if the count of the negative numbers are odd, either exclude the leftmost negative to the start of the window or rightmost to the end of the sliding window, whichever is longer
+        #return the max from all sliding window answers
+        #O(n) time O(1) space
+        
+        
+        left = 0
+        count = 0
+        res = 0
+        rightMostNegative = None
+        leftMostNegative = None
+        for right in range(len(nums) + 1):
+            if right == len(nums) or nums[right] == 0:
+                if count % 2 == 1:
+                    res = max([res, right - leftMostNegative - 1, rightMostNegative - left])
+                else:
+                    res = max(res, right - left)
+                left = right + 1
+                count = 0
+            else:
+                if nums[right] < 0:
+                    count += 1
+                    if count == 1:
+                        leftMostNegative = right
+                        rightMostNegative = right
+                    else:
+                        rightMostNegative = right
+        
+        return res
