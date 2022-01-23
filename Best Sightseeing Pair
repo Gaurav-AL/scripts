@@ -1,0 +1,21 @@
+class Solution:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        m1,m2 ,i1,i2= values[0],values[1],0,1
+        
+        for i in range(2,len(values)):
+            if(values[i] > m1):
+                m1 = values[i]
+                i1 = i
+            if(values[i] > m2):
+                m2 = values[i]
+                i2 = i
+            
+        for i in range(len(values)):
+            if(values[i] != m1):
+                values[i] += m1 - abs(i1-i)
+                continue
+            if(values[i] != m2):
+                values[i] += m2 - abs(i2-i)
+        # print(values,m1,i1,m2,i2)
+                
+        return max(values)
