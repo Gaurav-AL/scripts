@@ -17,3 +17,16 @@ class Solution:
                     
         return True
         
+        
+   same approach
+   
+   class Solution:
+	def isSubsequence(self, s: str, t: str) -> bool:
+		while len(s) > 0:
+			if t.find(s[0]) > -1:
+				t = t[t.find(s[0]) + 1:]
+				s = s[1:]
+		else:
+			return False
+	return True
+ accepted solution
