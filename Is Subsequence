@@ -1,0 +1,19 @@
+class Solution:
+    from collections import Counter
+    def isSubsequence(self, s: str, t: str) -> bool:
+        t,prev= list(t),0
+        for i in range(len(s)):
+            
+            if(s[i] in t):
+                ind = t.index(s[i])
+                if(ind >= prev):
+                    prev = ind
+                else:
+                    return False
+                # t = t[ind:]
+            else:
+                return False
+            
+                    
+        return True
+        
