@@ -1,0 +1,6 @@
+class Solution:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        dp = list(accumulate(values, lambda a,b: max(a-1,b)))
+        sums = [a + b - 1 for a, b in zip(values[1:], dp)]
+        print(dp,sums,lambda a,b: max(a-1,b))
+        return max(sums)
