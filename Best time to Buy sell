@@ -1,0 +1,9 @@
+class Solution:
+    def maxProfit(self, nums: List[int]) -> int:
+        profit,lr,rr = 0,[],[]
+        for i in range(1,len(nums)):
+            lr = nums[:i]
+            rr = nums[i:]
+            profit = max(profit,max(rr)-min(lr))
+            
+        return profit
