@@ -1,0 +1,12 @@
+class Solution:
+    def wordBreak(self, s: str, Dict: List[str]) -> bool:
+        i,lstr,rstr = 0,'',''
+        while(i < len(Dict)):
+            ind = s.find(Dict[i])
+            if(ind == -1):
+                i += 1
+            else:
+                lstr = s[:ind]
+                rstr = s[ind+len(Dict[i]):]
+                s = lstr + rstr
+        return s == ''
