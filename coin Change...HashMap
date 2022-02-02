@@ -1,0 +1,22 @@
+class Solution:
+    import sys
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if(amount == 0):
+            return 0
+        lookup = {}
+        total = 0
+        sm = {}
+        for i in range(len(coins)):
+            lookup[amount//coins[i]] = amount % coins[i]
+            total += coins[i]
+            sm[total] = i + 1
+            if((amount % coins[i]) in  coins ):
+                lookup[(amount // coins[i]) + 1] = 0
+            if((amount % coins[i]) in sm):
+                lookup[amount // coins[i] + sm[amount % coins[i]]] = 0
+        mn = sys.maxsize
+        print(lookup)
+        for k,v in lookup.items():
+            if(v == 0 and k < mn):
+                mn = k
+        return mn if(mn != sys.maxsize ) else -1
