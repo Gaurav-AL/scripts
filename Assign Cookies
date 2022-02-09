@@ -1,0 +1,12 @@
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        if(len(g) == 0 or len(s) == 0):
+            return 0
+        visited,child =[],0
+        for x in s:
+            for y in range(len(g)):
+                if(x >= g[y] and y not in visited):
+                    visited.append(y)
+                    child += 1
+                    break
+        return child
