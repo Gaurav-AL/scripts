@@ -1,0 +1,7 @@
+class Solution:
+    from collections import Counter
+    def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+        nums = sorted(arr , key = arr.count)
+        del nums[0:k]
+        return len(set(nums))
+            
