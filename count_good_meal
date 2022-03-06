@@ -1,0 +1,34 @@
+class Solution:
+    def countPairs(self, deliciousness: List[int]) -> int:
+        from collections import Counter
+		# Generate a hashmap out of all the numbers (code will run faster with lots duplicate numbers)
+        counter = Counter(deliciousness)
+		# Pre-generate all possible power of two 
+        powers = [2 ** x for x in range(21, -1, -1)]
+
+		# variable to hold final result
+        res = 0
+		
+		# go through each distinct number
+        for n in counter:
+            print(n)
+		    # try all 21 possible power of 2
+            for p in powers:
+			    # this is borrowed from two-sum solution, we calcuate the number we need
+				# to make it p
+                target = p - n
+				# if the target <= 0 means we don't have to look at the rest of the power of 2
+				# since the power of 2 we generated is in reverse order
+                if target <= 0:
+                    break
+                if n == target:
+				    # if the target is the same number, we use size * (size - 1) // 2 to calculate possible combinations
+                    res += counter[n] * (counter[n] - 1) // 2
+                elif target >= n:
+				    # otherwise it's just a product of two counts
+                    # print(counter[n],counter[target])
+                    res += counter[n] * counter[target]
+        return res % (10 ** 9 + 7)
+                    
+                    
+        
