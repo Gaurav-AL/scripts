@@ -1,0 +1,28 @@
+class Solution:
+    def modifyString(self, s: str) -> str:
+        out,out1 = 0,0
+        if(len(s) == 1):
+            out = ord(s)-1 if((ord(s[0]) > 97)) else ord(s[0]) + 1
+            return chr(out)
+        s = list(s) 
+        for i in range(len(s)):
+            if(i == 0 and s[i] == "?"):
+                out = (ord(s[i+1])-1) if((ord(s[i+1]) > 97)) else ord(s[i+1]) + 1
+                
+                s[i] = chr(out)
+                print(s[i])
+            if(i == len(s)-1 and s[i] == "?"):
+                out = ord(s[i-1])-1 if((ord(s[i-1]) > 97)) else ord(s[i-1]) + 1
+                s[i] = chr(out)
+                print(s[i])
+            if(s[i] == "?"):
+                out = (ord(s[i-1]) - 1) if (ord(s[i-1]) > 97) else ord(s[i+1]) + 1
+                if(out > 122):
+                    out -= 1     
+                s[i] = chr(out)
+                # print(s[i])
+        return s
+                
+                
+            
+        
