@@ -1,0 +1,24 @@
+class Solution:
+    def minimumJumps(self, forbidden: List[int], a: int, b: int, x: int) -> int:
+        pos,count,cur,flag,finite = a,1,0,0,0
+        while(pos != x):
+            cur = pos
+            if(pos < x):
+                pos += a
+                flag = 0
+                
+            if(pos > x and flag == 0):
+                pos -= b
+                flag = 1
+                 
+            count += 1
+            if(pos in forbidden):
+                pos = cur
+                count -= 1
+            if(pos == x):
+                return count
+            if(cur == pos):
+                finite += 1
+            if(finite >= 10):
+                return -1
+                
