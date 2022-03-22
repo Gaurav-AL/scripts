@@ -1,0 +1,29 @@
+class Solution {
+    static String encryptString(String S){
+        // code here
+        String str = "",rev_str = "";
+        int count = 0,l=0,r=0,flag = 0;
+        ArrayList<String> freqinhex = new ArrayList<>();
+        while(r < S.length() && l < S.length()){
+            if(Character.compare(S.charAt(l), S.charAt(r)) == 0){
+                count += 1;
+                r += 1;
+            }
+            else{
+                str += S.charAt(l);
+                
+                freqinhex.add(Integer.toHexString(count));
+                l = r;
+                count = 0;
+            }
+        }
+        str += S.charAt(l);
+        freqinhex.add(Integer.toHexString(count));
+        
+        for(int i = str.length()-1; i >= 0;i--){
+            rev_str += freqinhex.get(i) + str.charAt(i);
+            
+        }
+        return rev_str;
+    }
+};
