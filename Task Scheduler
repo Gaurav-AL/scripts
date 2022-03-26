@@ -1,0 +1,27 @@
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        task = len(tasks)
+        rem = defaultdict(int)
+        for i in tasks:
+            rem[i] += 1
+        done,i,possible,not_possible = [],0,[tasks[0]],[]
+        while(task != 0):
+            if(len(possible) != 0):
+                rem[possible[-1]] -= 1
+                done.append(possible[-1])
+                task -= 1
+            else:
+                done.append('idle')
+            
+            not_possible.extend(done[:-n-1:-1])
+            # print(f'not possible={not_possible}')
+            possible = []
+            for k,v in rem.items():
+                # print(k not in not_possible)
+                if(k not in not_possible and v > 0):
+                    possible.append(k)
+                    break
+            print(f'possible = {possible}',rem,f"done = {done}")
+            not_possible = []
+            
+        return len(done)
