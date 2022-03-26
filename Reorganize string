@@ -1,0 +1,17 @@
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        np,output,count = '','',0
+        char = Counter(s)
+        while(len(output) != len(s)):
+            count += 1
+            for k,v in char.items():
+                if(k != np and v > 0):
+                    char[k] -= 1
+                    output += k
+                    np = k
+                    break
+            if(count > len(s)):
+                return ""
+            
+           
+        return output
