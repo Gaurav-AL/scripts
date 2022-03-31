@@ -1,0 +1,35 @@
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        dp = [0]*(len(s))
+        i,j,num = 0,0,0
+        
+        while(i < len(s) and j < len(p)):
+            if(p[j] != '.' and p[j] != '*' and s[i] != p[j]):
+                return False
+            if(s[i] == p[j] or p[j] == '.'):
+                num += 1
+                dp[i] = num
+                i += 1
+                j += 1
+                
+                
+                
+            if(j < len(p) and p[j] == '*'):
+                num += 1
+                ch = p[j-1]
+                
+                if(ch == '.'):
+                    ch = s[i]
+                    
+                while(i < len(s) and s[i] == ch):
+                    dp[i] = num
+                    i += 1
+                j += 1
+        return dp[-1] == len(p)
+            
+            
+            
+            
+            
+        
+        
