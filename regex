@@ -1,0 +1,41 @@
+class Solution:
+    import re
+    def isMatch(self, s: str, p: str) -> bool:
+        dp = [0]*(len(s))
+        i,j,num = len(s)-1,len(p)-1,0
+        
+        while(i >= 0 and j >= 0):
+            if((i >= 0 and j>= 0 and p[j] != '.' and p[j] != '*' and s[i] == p[j]) or p[j] == '.') :
+                num += 1
+                dp[i] = num
+                i -= 1
+                j -= 1
+                
+            if(j >= 0 and i >= 0 and p[j] == '*'):
+                prv = p[j-1]
+                if(prv == '.'):
+                    return True
+                while(i >= 0 and s[i] == prv):
+                    num += 1
+                    dp[i] = num
+                    i -= 1  
+                j -= 2
+            if(i >= 0 and j>= 0 and p[j] != '.' and p[j] != '*' and s[i] != p[j]):
+                return False
+        # print(dp,j)
+        return dp[0] == len(s)
+                
+                
+            
+            
+        
+        
+        
+        
+            
+            
+            
+            
+            
+        
+        
