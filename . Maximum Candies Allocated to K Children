@@ -1,0 +1,16 @@
+candies = sorted(candies)
+        helper = []
+        lookup = defaultdict(int)
+        
+        for num in candies:
+            helper.append(num)
+            for x in helper:
+                lookup[x] += 1
+                lookup[num % x] += 1
+        lookup = dict(sorted(lookup.items(),key = lambda item:item[1]))
+        lookup = dict(sorted(lookup.items(),key = lambda item:item[0], reverse = True))
+        
+        for key,v in lookup.items():
+            if(v >= k):
+                return key
+        return 0
