@@ -1,0 +1,40 @@
+class KthLargest {
+    PriorityQueue<Integer> maxheap;
+    int index = 0;
+    public KthLargest(int k, int[] nums) {
+        maxheap = new PriorityQueue<>(k, Collections.reverseOrder());
+        this.index = k;
+        for(int n : nums){
+            maxheap.offer(n);
+        }
+        // System.out.println(maxheap);
+    }
+    
+    public int add(int val) {
+        maxheap.offer(val);
+        // System.out.println(maxheap);
+        int output =0,count = 0;
+        int[] temp = new int[index];
+        for(int i = 0; i < index;i++){
+            count +=1;
+            temp[i] = maxheap.peek();
+            if(count == index){
+                output = maxheap.peek();
+            }
+            maxheap.poll();
+        }
+        
+        for(int n : temp){
+            // System.out.println(n);
+            maxheap.offer(n);
+        }
+        
+        return output;
+    }
+}
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * KthLargest obj = new KthLargest(k, nums);
+ * int param_1 = obj.add(val);
+ */
