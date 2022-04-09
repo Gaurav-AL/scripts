@@ -1,0 +1,21 @@
+class Solution {
+    public double euclidean_distance(int x,int y){
+        return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+    }
+    public int[][] kClosest(int[][] points, int k) {
+        TreeMap<Double,Integer> distance = new TreeMap<>();
+        int[][] output = new int[k][2];
+        for(int i =0 ;i < points.length; i++){
+            distance.put(euclidean_distance(points[i][0],points[i][1]),i);
+        }
+        int i = 0;
+        for(int n : distance.values()){
+            if(k > 0){
+                output[i] = points[n];
+            }
+            i += 1;
+            k -= 1;
+        }
+        return output;
+    }
+}
