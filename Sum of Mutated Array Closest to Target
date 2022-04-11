@@ -1,0 +1,17 @@
+class Solution:
+    def findBestValue(self, arr: List[int], target: int) -> int:
+        element,minimum,temp = 0,sys.maxsize,[]
+        for i in range(max(arr)+1):
+            temp = arr.copy()
+            for x in range(len(temp)):
+                # print(temp)
+                if(i < temp[x]):
+                    temp[x] = i
+            total = sum(temp)
+            
+            if(abs(total - target) < minimum):
+    
+                element = i
+                minimum = abs(total - target)
+                
+        return element
