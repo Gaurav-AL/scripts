@@ -1,0 +1,27 @@
+class Solution:
+    def numSquares(self, n: int) -> int:
+        perfects,init = [],1
+        while(init * init <= n):
+            perfects.append(init*init)
+            init += 1
+        cases = []
+        for x in perfects:
+            lookup = defaultdict(int)
+            lookup[x] = n // x
+            if(n% x != 0):
+                lookup[n % x] = 1
+            cases.append(lookup)
+        print(cases)
+        minimum = sys.maxsize
+        for case in cases:
+            total = 0
+            for item in case:
+                if(item in perfects and case[item] in perfects):
+                    total += min(item,case[item])
+                if(item in perfects and case[item] not in perfects):
+                    total += case[item]
+                if(item not in perfects and case[item] in perfects):
+                    total += item
+            print(total)
+            minimum = min(minimum,total)
+        return minimum
