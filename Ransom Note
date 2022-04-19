@@ -1,0 +1,10 @@
+class Solution:
+    from collections import Counter
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        ransom = Counter(ransomNote)
+        mag = Counter(magazine)
+        for x in ransom:
+            if(x in mag and mag[x] < ransom[x] or x not in mag):
+                return False
+            
+        return True
