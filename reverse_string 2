@@ -1,0 +1,43 @@
+class Solution:
+    def reverseStr(self, s: str, k: int) -> str:
+        even,odd,total,count,l = [],[],0,0,0
+        while(total < len(s)):
+            # print(total)
+            
+            if(count % 2 == 0):
+                if(l+k < len(s)):
+                    st = s[l:l+k]
+                else:
+                    st = s[l : ]
+                even.append(st)
+                total += len(st)
+            else:
+                if(l+k < len(s)):
+                    st = s[l:l+k]
+                else:
+                    st = s[l : ]
+                odd.append(st)
+                total += len(st)
+            count += 1
+            l += k
+        even_rev = []
+        for words in even:
+            words = list(words)
+            l,r = 0,len(words)-1
+            while(l < r):
+                words[l],words[r] = words[r],words[l]
+                l += 1
+                r -= 1
+            even_rev.append("".join(words))
+        loop = max(len(even_rev),len(odd))
+        final_str = ''
+        for i in range(loop):
+            if(i < len(even)):
+                final_str += even_rev[i]
+            if(i < len(odd)):
+                final_str += odd[i]
+        
+                
+            
+        return final_str
+        
