@@ -1,0 +1,21 @@
+class Solution:
+    from collections import Counter
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        lookup_1 = {}
+        for i in range(len(s)):
+            
+            lookup_1[s[i]] = t[i]
+        lookup_2  = {}
+        for i in range(len(t)):
+            lookup_2[t[i]]= s[i]
+        string_1,string_2 = '',''
+        print(lookup_1,lookup_2)
+        for i in range(len(s)):
+            string_1 += lookup_1[s[i]]
+        for i in range(len(s)):
+            string_2 += lookup_2[t[i]]
+        print(string_1,string_2)
+        
+        
+        
+        return string_1 == t and string_2 == s
