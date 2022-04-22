@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> ranges = new ArrayList<>();
+        String start = "",end = "";
+        int i ;
+        for( i = 0; i < nums.length-1;i++){
+            start = Integer.toString(nums[i]);
+            while(i+1 < nums.length && nums[i+1] - nums[i] == 1){
+                i += 1;
+                end = Integer.toString(nums[i]);
+            }
+            // System.out.println(ranges+" "+i+" "+end);
+            if(end == "") ranges.add(start);
+            else ranges.add(start +"->"+ end);
+            end = "";
+        }
+        if(i < nums.length){
+            ranges.add(Integer.toString(nums[i]));
+        }
+        return ranges;
+    }
+}
