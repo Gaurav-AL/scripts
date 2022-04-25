@@ -1,0 +1,29 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        dp,n = [],0
+        def combination(n,r):
+            return fact(n)/ (fact(r) * fact(n-r))
+        def fact(n):
+            f = 1
+            if(n == 0):
+                return 1
+            for i in range(1,n+1):
+                f *= i
+            return f
+        if(s[0] == "0" or "00" in s):
+            return 0
+        
+        for x in range(len(s)-1):
+            if(int(s[x]) > 2 and int(s[x+1]) == 0):
+                return 0
+            elif( 0 < int(s[x]) <= 2 and  0< int(s[x+1]) <= 6):
+                
+                
+                n += 1
+        total = 0
+        # print(n)
+        for r in range(1,n+1):
+            # print(combination(n,r))
+            total += combination(n,r)
+        
+        return int(total + 1)
