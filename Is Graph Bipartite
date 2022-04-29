@@ -1,0 +1,16 @@
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        lookup = defaultdict(list)
+#         this will only work if the component is Only one
+        for i in range(len(graph)):
+            lookup[i] = graph[i]
+        
+        for i in range(1,len(lookup)):
+            list1 = lookup[i-1]
+            list2 = lookup[i]
+            
+            for x in list1:
+                if x in list2:
+                    return False
+            
+        return True
