@@ -1,0 +1,26 @@
+class Solution:
+    from collections import deque
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        
+        color = [0]*len(graph)
+        for i in range(len(graph)):
+            
+            if(color[i] == 0):
+                queue = deque()
+                color[i] = 1
+                queue.append(i)
+                
+                while(queue):
+                    
+                    child = queue.pop()
+                    print(color,child)
+                    
+                    
+                    for x in graph[child]:
+                        if(color[child] == color[x]):
+                            return False
+                        elif(color[x] == 0):
+                            queue.append(x)
+                            color[x] = -color[child]
+        return True
+            
