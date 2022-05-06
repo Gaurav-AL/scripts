@@ -1,0 +1,41 @@
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        
+        Stack<Character> stack = new Stack<>();
+        int count = 0;
+        char curr_ele = s.charAt(0);
+        for(int i = 0;  i < s.length() ;i++){
+            char[] temp = new char[k];
+             // System.out.println(s.charAt(i));
+            stack.push(s.charAt(i));
+            curr_ele = stack.peek();
+            if(stack.size() >= k){
+                count = 0;
+                for(int j = 0 ; j < k ; j++){   
+                  char ele = stack.pop();
+                    temp[j] = ele;
+                    if(ele == curr_ele){
+                        count += 1;
+                    }
+                }
+                if(count != k){
+                    for(int j = k-1 ; j >= 0;j--){
+                        // System.out.println(temp[j]);
+                        stack.push(temp[j]);
+                    }
+                }
+            }
+            
+       }
+        String res = "";
+        while(!stack.isEmpty()){
+            res += stack.pop();
+        }
+        int l = 0,r = res.length() -1;
+        String res_2 = "";
+        for(int i = res.length()-1 ;i >= 0; i--){
+            res_2 += res.charAt(i);
+        }
+        return res_2;
+    }
+}
