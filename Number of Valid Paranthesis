@@ -1,0 +1,11 @@
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        stack,count = [],0
+        for p in s:
+            if(p == ")" and stack):
+                stack.pop()
+                count += 1
+            elif(p == "("):
+                stack.append("(")
+        # print(stack)
+        return count * 2
