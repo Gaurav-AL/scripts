@@ -1,1 +1,785 @@
+0:32
+prices the price at index i just
+0:34
+represents the price of a given stock on
+0:38
+the ith day and our goal is to maximize
+0:41
+the profit that we can achieve and the
+0:44
+complicated part is that actually we can
+0:46
+make as many transactions as we like we
+0:49
+can buy a stock and then sell a stock
+0:52
+but there are a couple restrictions the
+0:55
+main restriction here is that we can't
+0:58
+buy a stock and then sell the stock on
+1:01
+the next day we have to have at least
+1:03
+one day in between called the cool down
+1:06
+day now we could have one cool down day
+1:09
+but we could actually have multiple cool
+1:11
+down days if we really want to right
+1:12
+because we have a choice of how many
+1:14
+transactions we can complete and the
+1:16
+other restriction here is that if we buy
+1:19
+the stock let's say on index zero right
+1:21
+we buy it for price one we can't just
+1:24
+buy it the next day as well right we
+1:25
+can't just have uh infinitely many we
+1:28
+can only have one share at a time
+1:29
+basically that's what they're trying to
+1:31
+get at right we can't buy and then buy
+1:33
+and then buy we have to buy and then
+1:35
+sell and then rebuy so in this example
+1:38
+with this array of prices the result
+1:41
+happened to be three three is the max
+1:42
+profit we could get and these are the
+1:44
+decisions we would make to result in the
+1:48
+output three we buy on the first day we
+1:50
+buy for one we sell for two that's a
+1:52
+profit of one so so far we have a profit
+1:54
+of one we cool down on day three so we
+1:57
+cool down we buy it for zero the next
+1:59
+day and then sell it for two so that's a
+2:00
+profit of two so the total profit was
+2:03
+three so not too bad but the real uh
+2:05
+complicated part about this problem is
+2:07
+that we have so many choices that we
+2:09
+could make and that can get really
+2:11
+complicated unless of course you draw a
+2:13
+picture so let me show you how with
+2:15
+drawing a picture we can solve this
+2:16
+problem in linear time so like i said
+2:19
+there's a lot of decisions to make so
+2:20
+let's try to draw out those decisions
+2:23
+the first main thing here is we can
+2:26
+either buy or we can sell and we can
+2:28
+only sell if we have already bought the
+2:31
+stock before so when we start out
+2:34
+at this array right we start at day zero
+2:37
+at this point at the beginning of the
+2:38
+array are we buying or are we selling of
+2:41
+course we're buying because we don't own
+2:42
+the stock yet so we can't sell it so
+2:44
+that's one part of the state that we
+2:46
+have to kind of keep track of are we
+2:48
+buying or are we selling and it's not
+2:49
+too hard because it's just a boolean
+2:51
+right it's true or false and initially
+2:53
+we're buying so you know we have a
+2:55
+choice at index one right we can buy so
+2:58
+of course one decision is buy if we buy
+3:01
+the stock on day zero it costs one so if
+3:03
+we do buy what's our total profit so far
+3:06
+well buying costs money so our total
+3:08
+profit so far if we buy is gonna be
+3:10
+negative one now are there any other
+3:13
+decisions we can make other than buying
+3:15
+well we definitely can't sell yet we
+3:17
+don't own anything but we can definitely
+3:20
+do a cool down now if we do a cool down
+3:23
+then our profit is going to be zero so
+3:25
+far and by the way let me just draw a
+3:27
+little zero up here because when we
+3:29
+initially started our profit was also
+3:31
+zero okay now on the left path of the
+3:33
+decision tree what choices can we make
+3:36
+now can we also buy and do a cooldown
+3:39
+well we already bought we can't buy
+3:42
+again we have to sell now technically we
+3:44
+don't have to sell but that definitely
+3:46
+is one of our choices the other choice
+3:49
+of course is cool down so as you can
+3:51
+kind of tell now
+3:53
+we always have a choice of cooling down
+3:55
+right the the main choice that we're
+3:57
+going to be determining is are we buying
+3:59
+or are we selling the other choice can
+4:00
+always be cool down we don't have to do
+4:02
+anything but if we do sell on the second
+4:05
+day you can see on the second day the
+4:06
+price is two so uh by selling we're
+4:09
+basically doing a plus two operation
+4:11
+right initially we had negative one
+4:13
+we're doing a plus two so that means our
+4:16
+total profit if we sell so far is going
+4:18
+to be positive one so that's pretty good
+4:20
+now of course if we cool down the profit
+4:22
+is going to stay the same meaning
+4:24
+negative one now let's quickly draw the
+4:26
+decisions on the right side of the tree
+4:28
+if we cool down
+4:29
+then we can't sell because we haven't
+4:31
+bought anything yet so the same
+4:33
+decisions will be present as you know
+4:35
+the original decisions basically buying
+4:37
+cooldown over here and the other
+4:39
+decision is going to be buying so here
+4:42
+if we buy we saw that initially we had
+4:44
+zero as the total profit but if we buy
+4:46
+on the second day that'll be a minus two
+4:48
+operation so our total profit so far
+4:50
+will be minus two if we cool down of
+4:52
+course it'll just stay zero so now we
+4:54
+get to a kind of interesting case
+4:56
+uh after we have already sold then what
+4:59
+are our decisions can we buy and then
+5:01
+also have a cool down well the answer is
+5:03
+no and the reason is because remember
+5:05
+after selling we are forced to have at
+5:07
+least one cool down day right after
+5:10
+selling so basically just pretend like
+5:12
+we skipped a day right we had a forced
+5:15
+cooldown day right that's our uh one
+5:18
+decision and we we can't make any other
+5:21
+decisions here right this is our
+5:23
+decision we're forced to do a cool down
+5:25
+after selling but after doing that uh we
+5:27
+know our profit is going to stay the
+5:28
+exact same plus one after doing that
+5:30
+though then we do have a choice of
+5:32
+buying or having another cool down day
+5:35
+so we can buy or we can have another
+5:39
+consecutive cool down day if we have
+5:40
+another cool down day of course our
+5:42
+profit is going to stay the exact same
+5:43
+plus one but if we buy well first what
+5:46
+day is it it's the fourth day now it's
+5:48
+uh the price is zero so if we buy it's
+5:50
+going gonna cost us zero i wish i could
+5:52
+buy stocks for a zero price but in this
+5:55
+case of course if it costs zero then our
+5:58
+total profit is just going to stay the
+5:59
+same so we can stay at plus one now
+6:02
+let's continue on this path last
+6:04
+decision we can make is either selling
+6:06
+or having another cool down day of
+6:10
+course if we sold well
+6:12
+we're on the fifth day the last day it
+6:14
+costs the prices to so we'll make a
+6:16
+profit of plus two we were already at
+6:18
+plus one so one plus two is going to be
+6:20
+three that's going to be our total
+6:22
+profit if we took this chain of
+6:25
+decisions right if we bought sold had a
+6:27
+cool down then bought and sold again
+6:30
+this is what the profit would be of
+6:31
+course every path in this decision tree
+6:33
+is going to have a different number
+6:35
+right for the total profit so far and of
+6:37
+course we want to return the maximum and
+6:39
+by the way if we had the cooldown day
+6:42
+instead on the last day then our profit
+6:44
+would stay the same it would be plus one
+6:46
+as opposed to plus three and just
+6:49
+imagine that you know every leaf node of
+6:52
+this tree has some different number and
+6:55
+among all of those we want to return the
+6:56
+maximum so among these two decisions
+6:59
+between three and one of course the
+7:01
+value we are going to return when we
+7:03
+implement the solution recursively the
+7:05
+value we're going to return is going to
+7:06
+be the plus three we're just going to
+7:07
+take the maximum of these two and return
+7:09
+the max so i really hope looking at this
+7:12
+picture makes the solution
+7:13
+understandable for you the downside to
+7:16
+the solution though is the time
+7:17
+complexity you can see that the height
+7:19
+of the tree that we're making is going
+7:21
+to be n where n is the size of the
+7:24
+price's array and the number of
+7:27
+decisions at every point we can make is
+7:29
+up to two decisions so the overall time
+7:31
+complexity is going to be 2 to the power
+7:34
+of n but we can actually use a very
+7:36
+simple dynamic programming technique
+7:38
+called caching in this case and by doing
+7:41
+that we can reduce the time complexity
+7:42
+to big o of n the reason why is because
+7:45
+the key for the caching that i'm going
+7:47
+to be doing is one going to be the index
+7:49
+right the index of what position we're
+7:51
+at in the price is array the second
+7:54
+key i'm going to be using is a boolean
+7:56
+for buy or sell i want to know if we're
+7:59
+buying or are we selling it's a binary
+8:01
+decision so we can just use a boolean
+8:04
+for that right if we take this key value
+8:06
+how many possible values could it be
+8:10
+well the index i there's n different
+8:12
+possible values for it this uh by or
+8:15
+cell state is going to be two different
+8:17
+states for it because it's just a
+8:18
+boolean right so if we take n times two
+8:22
+uh we basically get two times n
+8:25
+right which we know is just can reduce
+8:27
+to big o of n so
+8:30
+in this case if we use caching the time
+8:32
+complexity will be big o of n the memory
+8:34
+complexity will also be big o of n
+8:36
+because we are caching if you're not
+8:38
+familiar with caching i'll be explaining
+8:40
+it right now as i go into the coding
+8:42
+solution okay so now let's write out the
+8:44
+code you can see i already wrote out a
+8:46
+few things one is just a comment kind of
+8:48
+explaining what we're going to be doing
+8:50
+we're going to keep tracking of the
+8:51
+state whether we're buying or we're
+8:52
+selling if we buy we're just going to
+8:54
+increment the index by one if we sell
+8:56
+we're going to increment the index by
+8:57
+two reason is because we remember we
+9:00
+have to take a cool down day after we
+9:02
+sell and remember we are going to be
+9:04
+using caching a dynamic programming
+9:06
+technique so the easiest way to do a
+9:08
+cache is just use a hashmap so that's
+9:10
+what i'm doing here with python and just
+9:12
+a comment what i'm going to be using as
+9:13
+the key value of this hashgraph is going
+9:15
+to be the index i that we're at in our
+9:17
+prices array and a boolean which is
+9:19
+called buying it's going to be true if
+9:21
+we're in a buying state and it's going
+9:23
+to be false if we're in a selling state
+9:25
+and the value of the hashmap is just
+9:26
+going to be the max profit associated
+9:28
+with this key value so now let's get
+9:30
+into it i'm going to be writing out a
+9:33
+recursive function dfs i'm going to be
+9:35
+writing the function inside of our root
+9:36
+function
+9:37
+because it's just easier that way we
+9:40
+don't have to pass in every single
+9:41
+parameter we don't have to pass in the
+9:43
+prices array we don't have to pass in
+9:44
+our dp cash we only have to pass in
+9:47
+our index and whether we're buying or
+9:49
+we're selling so
+9:50
+first thing with recursive functions i
+9:52
+like to do is just write out the base
+9:54
+case so we know that the main base case
+9:56
+is going to be if index goes out of
+9:58
+bounds so basically if index is greater
+10:01
+than or equal to the length of the
+10:04
+prices array i didn't really cover this
+10:06
+base case in the drawing explanation but
+10:08
+i think it's pretty self-explanatory if
+10:10
+we go out of bounds basically if we have
+10:12
+an empty array of prices what are we
+10:14
+going to return well we can't make any
+10:16
+profit off of that so we're going to
+10:17
+return zero okay so that's great and the
+10:20
+other base case i just want to quickly
+10:21
+mention is the case that if this pair of
+10:25
+values this i and buying pair has
+10:28
+already been computed before so
+10:31
+basically if this is in our dp hash map
+10:33
+initially our dp hash map is empty but
+10:36
+if this is in our dp hash map then we
+10:39
+assume that the max profit associated
+10:41
+with this key has already been stored so
+10:43
+then we can return that right so in dp
+10:46
+we can just use this key value and then
+10:48
+return whatever that max profit we
+10:49
+stored was okay so now for the actual
+10:52
+decision that we can make and remember
+10:55
+that decision that we make is going to
+10:56
+depend on only one thing what state are
+10:59
+we in are we buying or are we selling so
+11:03
+it's a binary estate right so if else so
+11:06
+let's start with the buying so we know
+11:08
+in the buying state we can do two things
+11:10
+we can buy or we can have a cool down
+11:14
+day right what's going to be the profit
+11:16
+the max profit associated with each of
+11:18
+these well if we buy we're going to
+11:20
+recursively call dfs at index i plus 1.
+11:25
+and what's the state going to be are we
+11:27
+gonna leave buying as the same of course
+11:30
+not because if we just bought then we're
+11:32
+in the opposite state we're in the not
+11:34
+buying state so in python this will
+11:36
+literally just take that boolean value
+11:38
+and negate it or in other languages you
+11:41
+could just do like the exclamation mark
+11:43
+but i'll leave this as is so that's how
+11:46
+the recursive call is gonna work pretty
+11:48
+straightforward but the only thing is if
+11:49
+we bought doesn't that affect our profit
+11:52
+so far remember that's what i was
+11:54
+keeping track of so if we bought we have
+11:56
+to subtract the price of what we just
+11:58
+bought we bought the index on
+12:01
+day i so that's what we have to subtract
+12:03
+from the total this will tell us what
+12:06
+the max profit we can get from the
+12:07
+remaining array starting at the not
+12:10
+buying state and this will tell us how
+12:11
+much it actually costed us to get to
+12:13
+this state in the first place similarly
+12:16
+we'll do the cool down state which is
+12:17
+slightly easier because all we have to
+12:19
+do is do i plus one and in this case the
+12:22
+buying state actually stays the exact
+12:24
+same because we did not buy so we're
+12:26
+we're still in a buying state and we
+12:28
+don't have to subtract anything because
+12:30
+we didn't spend any money and last but
+12:32
+not least don't forget to cash the
+12:35
+results so now we have our result so i'm
+12:38
+going to use our key value i and buying
+12:41
+and remember we took two decisions among
+12:44
+these two decisions what do we want to
+12:45
+know we want to know which one created
+12:47
+the max profit for us so let's just take
+12:49
+the max of buy and cool down and then
+12:52
+assign that to dp so this is where we
+12:55
+are actually caching so if we cache the
+12:57
+solution and then we try to recompute
+13:00
+that solution up above then we're going
+13:02
+to end up returning it instantly rather
+13:04
+than going through all the recursive
+13:05
+calls over again okay so that's really
+13:08
+the bulk of the problem last thing we
+13:09
+have to do is handle the sell case so if
+13:12
+we
+13:13
+sell then we're going to do dfs
+13:16
+and remember if we sell we're actually
+13:18
+going to increment the index by two
+13:19
+because we have to take a cool down day
+13:21
+and if we sell we also have to negate
+13:24
+the value of the boolean and you know
+13:27
+you can do what's readable for you if
+13:29
+you want to change this to you know set
+13:31
+the buying state to true now uh you know
+13:34
+whatever is readable for you i prefer
+13:36
+just setting it to the negation um but
+13:38
+instead of subtracting the price like we
+13:40
+did with buying we want to actually add
+13:42
+the price because if we sold that means
+13:44
+we made some money so we can
+13:46
+you know add the profit of this uh
+13:48
+notice i forgot the s up above um and
+13:51
+yeah so that's one decision and the
+13:53
+other decision is just the cooldown
+13:55
+decision which we can literally just
+13:56
+copy and paste from up above because the
+13:58
+cooldown is just skipping the day and
+14:01
+it'll be the same in both cases and i'm
+14:03
+going to copy the dp assignment up above
+14:06
+because the only difference uh if we
+14:08
+sold is we're going to take the max of
+14:11
+sell and the cool down day and if you
+14:14
+want to save like one line of code here
+14:16
+you can probably just take one of the
+14:18
+cool down functions
+14:19
+move it outside of the if else statement
+14:22
+and then delete the other cooldown which
+14:24
+i guess i'll do for you but i don't
+14:26
+think it's really that important but
+14:28
+yeah once that's done what do we want to
+14:30
+return we want to return whatever the
+14:32
+max profit was we luckily stored that in
+14:34
+our dp so we can just return uh just
+14:37
+like this and believe it or not that
+14:40
+really is the entire function but we
+14:42
+don't have to we don't want to forget to
+14:44
+actually call that function so let's
+14:46
+call our dfs starting at index zero and
+14:49
+initially the buying state is true
+14:51
+because we are buying when we start out
+14:54
+so let's run this to make sure that it
+14:56
+works and as you can see on the left yes
+14:58
+it works and it is pretty efficient so i
+
+
 
